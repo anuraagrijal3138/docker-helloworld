@@ -24,7 +24,7 @@ pipeline {
       parallel {
         stage('Test On Chrome') {
           steps {
-            echo 'Running test on Chrome!!'
+            echo 'sleep 3 && Running test on Chrome!!'
           }
           post {
             success {
@@ -34,7 +34,7 @@ pipeline {
         }
 	stage('Test On Firefox') {
           steps {
-            echo 'Running test on Firefox!!'
+            echo 'sleep 7 && Running test on Firefox!!'
           }
           post {
             success {
@@ -44,7 +44,7 @@ pipeline {
         }
 	stage('Test On IE') {
           steps {
-            echo 'Running test on IE!!'
+            echo 'sleep 12 && Running test on IE!!'
           }
           post {
             success {
