@@ -26,6 +26,7 @@ pipeline {
 	sh 'echo "Run second test!!"'
 	sh 'echo "Run third test!!"'
 	sh 'echo "Run last test!!"'
+      }
     }
 /*
     stage('Apply Kubernetes Files') {
