@@ -70,8 +70,8 @@ pipeline {
     }
     stage('Apply Kubernetes Deployment') {
       steps {
-          sh 'cat deployment.yml | sed "s/${env.BUILD_NUMBER}-1/${env.BUILD_NUMBER}/g" | kubectl apply -f -'
-          sh 'kubectl apply -f deployment.yml'
+	  sh 'NUMBER=${env.BUILD_NUMBER} - 1'
+          sh 'cat deployment.yml | sed "s/$NUMBER/${env.BUILD_NUMBER}/g" | kubectl apply -f -'
         }
       }
   }
