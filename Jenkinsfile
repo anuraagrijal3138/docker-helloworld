@@ -20,12 +20,38 @@ pipeline {
         sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
       }
     }
-    stage ('Test') {
-      steps {
-        sh 'echo "Run first test!!"'
-	sh 'echo "Run second test!!"'
-	sh 'echo "Run third test!!"'
-	sh 'echo "Run last test!!"'
+    stage('Run Tests') {
+      parallel {
+        stage('Test On Chrome') {
+          steps {
+            echo 'Running test on Chrome!!'
+          }
+          post {
+            success {
+              echo 'SUCCESS'
+            }
+          }
+        }
+	stage('Test On Firefox') {
+          steps {
+            echo 'Running test on Firefox!!'
+          }
+          post {
+            success {
+              echo 'SUCCESS'
+            }
+          }
+        }
+	stage('Test On IE') {
+          steps {
+            echo 'Running test on IE!!'
+          }
+          post {
+            success {
+              echo 'SUCCESS'
+            }
+          }
+        }
       }
     }
 /*
