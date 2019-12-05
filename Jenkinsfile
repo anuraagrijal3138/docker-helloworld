@@ -33,7 +33,7 @@ pipeline {
           }
           steps {
             sh '''
-              sleep 7 
+              sleep 3
 	      echo \'Running test on Firefox!!\'
 	    '''
           }
@@ -48,7 +48,7 @@ pipeline {
           }
           steps {
             sh '''
-              sleep 12 
+              sleep 3 
 	      echo \'Running test on IE!!\'
 	    '''
           }
@@ -70,13 +70,12 @@ pipeline {
     }
     stage('Apply Kubernetes Deployment') {
       steps {
-	  sh 'NUMBER=${env.BUILD_NUMBER} - 1'
-          sh 'cat deployment.yml | sed "s/$NUMBER/${env.BUILD_NUMBER}/g" | kubectl apply -f -'
+          sh 'cat deployment.yml | sed "s/$((${env.BUILD_NUMBER} - 1))/${env.BUILD_NUMBER}/g" | kubectl apply -f -'
         }
       }
   }
   environment {
-    registry = 'anuraagrijal/hello-world-jenkins'
+    registry = 'anuraagrijal/hello-world-jenkins-dev'
     registryCredential = 'dockerhub'
   }
   post {
