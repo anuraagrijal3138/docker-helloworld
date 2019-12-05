@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: karthequian/helloworld:latest
+        image: anuraagrijal/hello-world-jenkins-dev:6
         ports:
         - containerPort: 80
 ---
