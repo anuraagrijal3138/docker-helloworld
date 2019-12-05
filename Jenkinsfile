@@ -15,7 +15,6 @@ pipeline {
           sh "docker push anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
         }
       }
-    }
     stage('Docker Remove Image') {
       steps {
         sh "docker rmi anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
