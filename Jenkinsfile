@@ -71,7 +71,7 @@ pipeline {
 
     stage('Apply Kubernetes Deployment') {
       steps {
-        sh 'cat .kube/config'
+        sh 'pwd'
       }
     }
 
