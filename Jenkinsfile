@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "anuraagrijal/hello-world-jenkins"
+    registryCredential = 'dockerhub'
+  }
   agent any
   stages {
     stage('Docker Build') {
@@ -6,11 +10,8 @@ pipeline {
         sh "docker build --network dcf236262ec0 -t anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER} ."
       }
     }
-/*
     stage('Docker Push') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'JUi@@11stbest', usernameVariable: 'anuraagrijal')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh "docker push anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
         }
       }
@@ -20,6 +21,7 @@ pipeline {
         sh "docker rmi anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
       }
     }
+/*
     stage('Apply Kubernetes Files') {
       steps {
           withKubeConfig([credentialsId: 'kubeconfig']) {
