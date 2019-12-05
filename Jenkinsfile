@@ -63,12 +63,6 @@ pipeline {
         sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
       }
     }
-    stage('Apply Kubernetes Deployment') {
-      steps {
-          sh 'cat deployment.yml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
-          sh 'kubectl apply -f deployment.yml'
-        }
-      }
   }
 post {
     success {
