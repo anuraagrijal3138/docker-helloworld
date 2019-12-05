@@ -70,10 +70,9 @@ pipeline {
     }
     stage('Apply Kubernetes Deployment') {
       steps {
-	sh 'echo ${env.BUILD_NUMBER}'
-//      sh 'cat deployment.yml | sed "s/1234512345/${env.BUILD_NUMBER}/g" | kubectl apply -f -'
-        }
+        sh 'cat deployment.yml | sed "s/1234512345/$BUILD_NUMBER/g" | kubectl apply -f -'
       }
+    }
   }
   environment {
     registry = 'anuraagrijal/hello-world-jenkins-dev'
