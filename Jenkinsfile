@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Docker Build') {
       steps {
-        sh "docker build -t anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER} ."
+        sh "docker build --network dcf236262ec0 -t anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER} ."
       }
     }
 /*

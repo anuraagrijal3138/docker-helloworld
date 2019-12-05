@@ -7,11 +7,6 @@
 # Set the base image to Ubuntu
 FROM ubuntu
 
-# File Author / Maintainer
-MAINTAINER Karthik Gaekwad
-
-# Install Nginx
-
 # Add application repository URL to the default sources
 # RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
