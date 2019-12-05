@@ -20,6 +20,13 @@ pipeline {
         sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
       }
     }
+    stage ('Test') {
+      steps {
+        sh 'echo "Run first test!!"'
+	sh 'echo "Run second test!!"'
+	sh 'echo "Run third test!!"'
+	sh 'echo "Run last test!!"'
+    }
 /*
     stage('Apply Kubernetes Files') {
       steps {
