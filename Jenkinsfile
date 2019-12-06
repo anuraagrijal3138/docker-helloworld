@@ -7,17 +7,17 @@ pipeline {
   stages {
     stage('Docker Build') {
       steps {
-        sh "docker build --network dcf236262ec0 -t anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER} ."
+        sh "docker build --network dcf236262ec0 -t anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER} ."
       }
     }
     stage('Docker Push') {
       steps {
-          sh "docker push anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
+          sh "docker push anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
         }
       }
     stage('Docker Remove Image') {
       steps {
-        sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
+        sh "docker rmi anuraagrijal/hello-world-jenkins:${env.BUILD_NUMBER}"
       }
     }
     stage('Run Tests') {
