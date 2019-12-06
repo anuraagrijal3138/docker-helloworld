@@ -1,9 +1,9 @@
 pipeline {
+  agent any
   environment {
     registry = 'anuraagrijal/hello-world-jenkins-dev'
     registryCredential = 'dockerhub'
   }
-  agent any
   stages {
     stage('Docker Build') {
       steps {
