@@ -1,9 +1,9 @@
 pipeline {
-  agent any
   environment {
     registry = 'anuraagrijal/hello-world-jenkins-dev'
     registryCredential = 'dockerhub'
   }
+  agent any
   stages {
     stage('Docker Build') {
       steps {
@@ -11,6 +11,17 @@ pipeline {
       }
     }
 
+    stage('Docker Push') {
+      steps {
+        sh "docker push anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
+      }
+    }
+
+    stage('Docker Remove Image') {
+      steps {
+        sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
+      }
+    }
     stage('Run Tests') {
       parallel {
         stage('Test On Chrome') {
@@ -22,9 +33,9 @@ pipeline {
           }
           steps {
             sh '''
-              sleep 3 
-	      echo \'Running test on Chrome!!\'
-	    '''
+              sleep 3
+              echo \'Running test on Chrome!!\'
+            '''
           }
         }
 
@@ -38,8 +49,8 @@ pipeline {
           steps {
             sh '''
               sleep 3
-	      echo \'Running test on Firefox!!\'
-	    '''
+              echo \'Running test on Firefox!!\'
+            '''
           }
         }
 
@@ -52,24 +63,12 @@ pipeline {
           }
           steps {
             sh '''
-              sleep 3 
-	      echo \'Running test on IE!!\'
-	    '''
+              sleep 3
+              echo \'Running test on IE!!\'
+            '''
           }
         }
 
-      }
-    }
-
-    stage('Docker Push') {
-      steps {
-        sh "docker push anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
-      }
-    }
-
-    stage('Docker Remove Image') {
-      steps {
-        sh "docker rmi anuraagrijal/hello-world-jenkins-dev:${env.BUILD_NUMBER}"
       }
     }
     stage('Apply Kubernetes Deployment') {
