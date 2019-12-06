@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = 'anuraagrijal/hello-world-jenkins-dev'
+    registryCredential = 'dockerhub'
+  }
   agent any
   stages {
     stage('Docker Build') {
@@ -73,10 +77,6 @@ pipeline {
         sh 'cat deployment.yml | sed "s/1234512345/$BUILD_NUMBER/g" | kubectl apply -f -'
       }
     }
-  }
-  environment {
-    registry = 'anuraagrijal/hello-world-jenkins-dev'
-    registryCredential = 'dockerhub'
   }
   post {
     success {
